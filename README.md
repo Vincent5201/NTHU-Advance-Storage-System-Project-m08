@@ -16,7 +16,7 @@ The framework simulates query latency, throughput, and false positive rates unde
 
 ### LSM Tree Structure & Workload
 
-* **Number of Layers**: 4 layers with a growth factor (T) of 4.0 (each layer's capacity = $T^{\text{layer\_index}}$).
+* **Number of Layers**: 4 layers with a growth factor (T) of 4.0 (each layer's capacity = $T^{layer\_index}$).
 * **Total SSTables**: 85 tables distributed across the 4 layers (1, 4, 16, and 64 respectively).
 * **Hotness Factor**: 0.2, modeling an exponential decay in data access probability across deeper layers.
 * **Query Workload**: 1,000,000 key lookups per simulation run, driven by an exponential inter-arrival time model.
