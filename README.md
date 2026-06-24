@@ -1,6 +1,3 @@
-這裡為您優化後的 `README.md` 內容。我將您提供的三點資訊自然地融入到了 **Project Overview**、**Key Simulation Parameters**（新增了對應的系統拓撲/變數說明）以及 **How to Use** 的實驗步驟說明中，讓整份文件的邏輯與對應關係更加清晰。
-
----
 
 # Heterogeneous-SSD Device-Aware Index Allocation
 
