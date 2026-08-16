@@ -19,6 +19,8 @@ Queries search sequentially through layers ($L_0 \rightarrow L_N$). At each laye
 * Mode 2 (Monkey): Cost-aware bit allocation based on the Monkey algorithm.
 * Mode 3 (Age-Aware Monkey): Hardware-aware enhancement incorporating SSD age and device latency.
 
+### Experiments
+After configuring the tree and strategy parameters, the simulation executes 1 million read queries to evaluate performance across Mean latency, 99th percentile (P99), and 99.9th percentile (P99.9) query tail latencies.
 
 ---
 
@@ -116,11 +118,11 @@ The scripts output high-resolution (300 DPI) visualization plots. These include 
 The simulation outputs data directly into `lsm_results.csv`. Depending on the experiment run, the captured metrics include:
 
 ### Core Latency & Memory Metrics
-
+* **Latency Profile**: Comprehensive tracking of Mean, P50, P99, P99.9, and P99.99 execution latencies (μs).
 * **Mode**: The filter allocation strategy being evaluated.
 * **Empty_Query_Ratio / Layer3_Retry_Prob**: The independent variable for the sweep (acts as the X-axis for visualization).
 * **Total_Used_Bits**: The cumulative memory footprint used by the Bloom filters.
-* **Latency Profile**: Comprehensive tracking of Mean, P50, P99, P99.9, and P99.99 execution latencies (μs).
+
 
 ### Detailed Layer & Efficiency Metrics
 
@@ -128,11 +130,4 @@ The simulation outputs data directly into `lsm_results.csv`. Depending on the ex
 * **False Positive Dynamics**: Layer-wise false positive rate percentages (`FPR_L0` to `FPR_L3`) and raw false positive counts (`FP_L0` to `FP_L3`).
 * **Operational Performance**: Total query throughput and successful intercept counts (`Intercept_L0` to `Intercept_L3`) for non-existent keys.
 
----
 
-## Interpretation Guide
-
-### Key Metrics
-
-* **Mean Latency**: Represents the average query execution time across the entire simulation.
-* **Latency Percentiles**: Median (P50) indicates typical behavior, while P99, P99.9, and P99.99 accurately capture tail latency under device degradation, retries, and architectural bottlenecks.
