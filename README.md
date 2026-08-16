@@ -1,15 +1,24 @@
 
 # Heterogeneous-SSD Device-Aware Index Allocation
+> This final project is based on the designated topic for NTHU Advanced Storage Systems course. 
 
 ## Project Overview
+This project simulates read operations in an LSM-tree to evaluate query latency and performance across different Bloom filter allocation strategies and heterogeneous SSD topologies.
 
-This project implements a simulation framework for **Device-Aware Bloom Filter Index Allocation** in Log-Structured Merge (LSM) Trees with heterogeneous SSDs. The research investigates three distinct allocation strategies:
+### Problem & Motivation
+Given a fixed total memory budget for Bloom filters, existing allocation strategies assume all storage devices are identical. However, an LSM-tree may be deployed across SSDs of varying quality and read latencies. This project investigates how allocating Bloom filter bits based on individual device latencies can optimize overall query performance.
 
-1. **Mode 1 (Uniform)**: Uniform bits per key allocation across all layers.
-2. **Mode 2 (Monkey)**: Monkey algorithm-based cost-aware allocation.
-3. **Mode 3 (Age-aware Monkey)**: An age-aware enhancement to the Monkey algorithm that explicitly incorporates device performance characteristics.
+### LSM Read Workflow
+Queries search sequentially through layers ($L_0 \rightarrow L_N$). At each layer:
+1. Check the Bloom filter (fast in-memory lookup).
+2. If positive, perform a device read (high latency cost).
+3. Stop if the key is found; otherwise, proceed to the next layer.
 
-The framework simulates query latency, throughput, and false positive rates under varying configurations of empty query ratios, device latencies, and SSD failure profiles. **It specifically models two distinct hardware topologies to evaluate degradation: one where performance bottlenecking is concentrated at the deepest layer, and another where low-performance devices are randomly distributed across the entire LSM tree structure.**
+### Allocation Strategies
+* Mode 1 (Uniform): Uniform bits-per-key allocation across all layers.
+* Mode 2 (Monkey): Cost-aware bit allocation based on the Monkey algorithm.
+* Mode 3 (Age-Aware Monkey): Hardware-aware enhancement incorporating SSD age and device latency.
+
 
 ---
 
